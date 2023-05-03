@@ -1,6 +1,8 @@
+
+import datetime
 import os
 import sys
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String, DateTime
 from sqlalchemy.orm import relationship, declarative_base
 from sqlalchemy import create_engine
 from eralchemy2 import render_er
@@ -14,6 +16,7 @@ class User(Base):
     last_name = Column(String(250), nullable=False)
     email = Column(String(200), nullable=False)
     password = Column(String(200), nullable=False)
+    created_date = Column(DateTime, default=datetime.datetime)
  
  
 class Planets(Base):
@@ -23,6 +26,8 @@ class Planets(Base):
     rotation_period = Column(Integer, nullable=False)
     orbital_period = Column(Integer, nullable=False)
     terraine = Column(Integer, nullable=False)
+    url = Column(String(200), unique=True)
+    
 
 class Characters(Base):
     __tablename__ = 'characters'
@@ -31,6 +36,9 @@ class Characters(Base):
     description = Column(Integer, nullable=False)
     mass = Column(Integer, nullable=False)
     gender = Column(String(200), nullable=False)
+    url = Column(String(200), unique=True)
+
+
  
 class Favorites(Base):
     __tablename__ = 'favorites'
